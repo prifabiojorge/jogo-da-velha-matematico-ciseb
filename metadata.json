@@ -1,0 +1,6 @@
+{
+  "name": "Jogo da Velha Matemático CISEB",
+  "description": "Jogo da Velha educativo com desafios de adição de 2 algarismos para Chromebooks escolares do CISEB.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

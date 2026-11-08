@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Public Game Rooms Collection
+    match /rooms/{roomCode} {
+      // Allow single document get/onSnapshot only to authenticated players in the room or waiting room
+      allow get: if request.auth != null && (
+        resource.data.phase == 'WAITING_FOR_PLAYER' ||
+        request.auth.uid == resource.data.player1.uid ||
+        (resource.data.player2 != null && request.auth.uid == resource.data.player2.uid)
+      );
+      
+      // Deny listing all rooms
+      allow list: if false;
+
+      // Deny client-side direct writes. All game state mutations occur via server Admin SDK transactions.
+      allow create, update, delete: if false;
+    }
+
+    // Server-Only Secrets Collection (Math challenge expected answers)
+    match /roomSecrets/{roomCode} {
+      // Strictly forbidden for all client SDK access
+      allow read, write: if false;
+    }
+  }
+}

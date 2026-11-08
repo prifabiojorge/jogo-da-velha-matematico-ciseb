@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ciseb-navy: #003B7A;
+    --ciseb-blue: #0B3C7D;
+    --ciseb-sky: #00A3E0;
+    --ciseb-cyan: #38BDF8;
+  }
+  
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0b2247;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(0, 163, 224, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(11, 60, 125, 0.4) 0px, transparent 50%);
+    color: #f8fafc;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Glassmorphism & Card Styles */
+.ciseb-glass {
+  background: rgba(11, 34, 71, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ciseb-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 163, 224, 0.2);
+  box-shadow: 0 10px 30px -5px rgba(0, 59, 122, 0.25);
+}
+
+.ciseb-gradient-bg {
+  background: linear-gradient(135deg, #003B7A 0%, #0B3C7D 50%, #0284C7 100%);
+}
+
+.ciseb-gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #BAE6FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Cell Glow Effect */
+.cell-glow-x {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.cell-glow-o {
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.4);
+}
+
+/* Keypad pulse animation */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.92; transform: scale(0.98); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s infinite ease-in-out;
+}

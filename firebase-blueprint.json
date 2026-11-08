@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "RoomPublicState": {
+      "title": "RoomPublicState",
+      "description": "Public game state of a Tic-Tac-Toe room readable by players",
+      "type": "object",
+      "properties": {
+        "roomCode": { "type": "string", "maxLength": 4, "minLength": 4 },
+        "phase": { "type": "string" },
+        "board": { "type": "array" },
+        "currentPlayer": { "type": "string" },
+        "startingPlayer": { "type": "string font" },
+        "roundNumber": { "type": "number" },
+        "stateVersion": { "type": "number" }
+      },
+      "required": ["roomCode", "phase", "board", "currentPlayer", "stateVersion"]
+    },
+    "RoomSecretState": {
+      "title": "RoomSecretState",
+      "description": "Private server-only data containing expected math answers",
+      "type": "object",
+      "properties": {
+        "roomCode": { "type": "string" },
+        "expectedAnswer": { "type": "number" },
+        "challengeId": { "type": "string" }
+      },
+      "required": ["roomCode", "expectedAnswer", "challengeId"]
+    }
+  },
+  "firestore": {
+    "/rooms/{roomCode}": {
+      "schema": { "$ref": "#/entities/RoomPublicState" },
+      "description": "Public state documents for Tic-Tac-Toe game rooms"
+    },
+    "/roomSecrets/{roomCode}": {
+      "schema": { "$ref": "#/entities/RoomSecretState" },
+      "description": "Private server-only secrets for Tic-Tac-Toe game rooms"
+    }
+  }
+}
